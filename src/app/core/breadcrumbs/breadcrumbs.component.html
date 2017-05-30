@@ -1,0 +1,11 @@
+<div *ngIf="breadcrumbs.length" class="cdpui-breadcrumbs">
+    <ul class="cdpui-breadcrumbs__list">
+        <li *ngFor="let breadcrumb of breadcrumbs" class="cdpui-breadcrumbs__item">
+            <span *ngIf="breadcrumb.url">
+                <a *ngIf="breadcrumb.url" [routerLink]="[breadcrumb.url]">{{ breadcrumb.name }}</a> /&nbsp;
+            </span>
+            <span *ngIf="!breadcrumb.url">{{ breadcrumb.name }}</span>
+        </li>
+    </ul>
+</div>
+

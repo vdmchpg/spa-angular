@@ -1,0 +1,12 @@
+<!--view-login.tpl.html-->
+<div class="cdpui-courses">
+    <div class="row">
+        <cdp-app-courses-search (search)="filterCourses($event)"></cdp-app-courses-search>
+        <div class="col-xs-12 col-sm-2">
+            <div class="cdpui-courses-add">
+                <a [routerLink]="['/courses/new']" class="btn btn-block btn-warning cdpui-courses-add__button">Add <i class="glyphicon glyphicon-plus"></i></a>
+            </div>
+        </div>
+    </div>
+    <cdp-app-courses-list [courses]="filteredCourses" (delete)="deleteCourse($event)" (edit)="editCourse($event)"></cdp-app-courses-list>
+</div>

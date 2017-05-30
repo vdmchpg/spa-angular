@@ -1,0 +1,65 @@
+<div class="cdpui-course">
+    <form class="form-horizontal col-xs-12">
+        <div class="form-group">
+            <label for="title" class="col-sm-2 control-label">Title</label>
+            <div class="col-sm-10">
+                <input [(ngModel)]="course.title" name="title" type="textarea" class="form-control" id="title" placeholder="Title" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="description" class="col-sm-2 control-label">Description</label>
+            <div class="col-sm-10">
+                <textarea [(ngModel)]="course.description" name="description" class="form-control" id="description" placeholder="Description"></textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="date" class="col-sm-2 control-label">Date</label>
+            <div class="col-sm-10">
+                <input [ngModel]="course.date | date: 'yyyy-MM-dd'" (ngModelChange)="dateToMilliseconds($event)" name="date" type="date" class="form-control" id="date"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="duration" class="col-sm-2 control-label">Duration</label>
+            <div class="col-sm-2">
+                <input [(ngModel)]="course.duration" name="duration" type="number" class="form-control" id="duration" placeholder="Duration" aria-describedby="helpBlock"/>
+            </div>
+            <div class="col-sm-8">
+                <span id="helpBlock" class="help-block"> {{course.duration | transformDuration}}</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <p class="col-xs-12 col-sm-2 control-label">Authors</p>
+            <div class="col-xs-5 col-sm-4">
+                <div class="list-group cdpui-course__authors">
+                    <a *ngFor="let author of currentAuthors" [ngClass]="{active : author.isSelected}" (click)="toggleSelected(author)" class="list-group-item cdpui-course__author">
+                        {{author.name}}
+                    </a>
+                </div>
+            </div>
+            <div class="col-xs-2 col-sm-2">
+                <button  type="button" class="btn btn-block btn-sm" (click)="removeAuthors()"><i class="glyphicon glyphicon-arrow-right"></i></button>
+                <button type="button" class="btn btn-block btn-sm" (click)="addAuthors()"><i class="glyphicon glyphicon-arrow-left"></i></button>
+            </div>
+            <div class="col-xs-5 col-sm-4">
+                <div class="list-group cdpui-course__authors">
+                    <a *ngFor="let author of availableAuthors" [ngClass]="{active : author.isSelected}" (click)="toggleSelected(author)" class="list-group-item cdpui-course__author">
+                        {{author.name}}
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-sm-offset-8 col-sm-4">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <button type="button" class="btn btn-info btn-block btn-save" (click)="saveChanges()">Save <i class="glyphicon glyphicon-edit"></i></button>
+                    </div>
+                    <div class="col-sm-6">
+                        <button type="button" class="btn btn-danger btn-block btn-cancel" [routerLink]="['/courses']">Cancel <i class="glyphicon glyphicon-remove"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
